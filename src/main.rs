@@ -7,12 +7,17 @@ pub mod room;
 
 fn main() {
     println!("My dungeon crawler");
+
+    let mut has_seen_description = false;
     
     loop {
+        if has_seen_description == false {
+            match_action("look");
+            has_seen_description = true;
+        }
+
         let mut input = String::new();
         println!("What do you want to do?");
-        
-        let room_id = "room1";
 
         io::stdin()
             .read_line(&mut input)
@@ -21,5 +26,3 @@ fn main() {
         match_action(&input);
     }
 }
-
-

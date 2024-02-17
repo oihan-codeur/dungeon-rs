@@ -1,8 +1,6 @@
-mod test_dungeon;
+pub mod test_dungeon;
 
-use test_dungeon::room_hash;
-
-enum Exits {
+enum _Exits {
     North,
     South,
     East,
@@ -11,14 +9,6 @@ enum Exits {
     Down,
 }
 
-struct Room {
-    id: Box<str>,
-    dungeon: Box<str>,
-    description: Box<str>,
-    exits: Vec<Exits>,
-}
-
-pub fn get_room() {
-    room_hash();
-    
+pub struct Room {
+    pub description: &'static str,
 }

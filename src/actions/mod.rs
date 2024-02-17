@@ -1,3 +1,5 @@
+use crate::room::test_dungeon::get_room;
+
 pub fn match_action(guess: &str) {
     let guess = guess.trim();
 
@@ -19,7 +21,9 @@ pub fn match_action(guess: &str) {
 }
 
 pub fn look() {
-    println!("You look around");
+    let current_room = get_room("room1");
+
+    println!("{}", current_room.description);
 }
 
 pub fn north() {
