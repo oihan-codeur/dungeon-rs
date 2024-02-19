@@ -1,6 +1,9 @@
 pub mod test_dungeon;
+use std::collections::HashMap;
 
-enum _Exits {
+#[derive(Clone, Debug)]
+#[derive(Eq, Hash, PartialEq)]
+pub enum Exits {
     North,
     South,
     East,
@@ -9,6 +12,17 @@ enum _Exits {
     Down,
 }
 
+#[derive(Clone, Debug)]
 pub struct Room {
     pub description: &'static str,
+    pub exits: HashMap<Exits, &'static str>,
+}
+
+impl Room {
+    pub fn new(description: &'static str, exits: HashMap<Exits, &'static str>) -> Self {
+        Self {
+            description,
+            exits,
+        }
+    }   
 }

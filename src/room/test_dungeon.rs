@@ -1,17 +1,23 @@
 use std::collections::HashMap;
 use crate::room::*;
 
-pub fn get_room(id: &str) -> &Room {
-    let mut hashmap : HashMap<&str, &Room> = HashMap::new();
-    hashmap.insert("room1", &ROOM_ONE);
 
-    let current_room = hashmap.get(id).unwrap();
+pub fn test_dungeon(id: &str) -> Room {
+    let mut room1 = Room {
+        description: "This is room number 1",
+        exits: HashMap::new(),
+    };
+    room1.exits.insert(Exits::North, "room2");
 
-    current_room
+    let mut room2 = Room {
+        description: "This is room number 2",
+        exits: HashMap::new(),
+    };
+    room2.exits.insert(Exits::South, "room1");
+
+    let mut dungeon = HashMap::new();
+    dungeon.insert("room1", room1);
+    dungeon.insert("room2", room2);
+
+    return dungeon.get(id).cloned().unwrap();
 }
-
-static DESCRIPTION: &'static str = "This is room number 1";
-
-static ROOM_ONE: Room = Room {
-    description: DESCRIPTION,
-};
