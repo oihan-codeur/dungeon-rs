@@ -1,5 +1,3 @@
-use std::io::Cursor;
-
 use crate::room::{test_dungeon::test_dungeon, Exits};
 use crate::game_data::Game;
 
@@ -41,7 +39,7 @@ pub fn north(mut location: &'static str) -> Game {
                 player_location: location,
             }
     },
-        None => { println!("You can't go north"); Game{ player_location: location } },
+        None => { println!("You can't go north."); Game{ player_location: location } },
     }
 }
 
@@ -56,7 +54,7 @@ pub fn south(mut location: &'static str) -> Game {
                 player_location: location,
             }
     },
-        None => { println!("You can't go south"); Game{ player_location: location } },
+        None => { println!("You can't go south."); Game{ player_location: location } },
     }
 }
 
@@ -71,7 +69,7 @@ pub fn east(mut location: &'static str) -> Game {
                 player_location: location,
             }
     },
-        None => { println!("You can't go north"); Game{ player_location: location } },
+        None => { println!("You can't go east."); Game{ player_location: location } },
     }
 }
 
@@ -86,7 +84,7 @@ pub fn west(mut location: &'static str) -> Game {
                 player_location: location,
             }
     },
-        None => { println!("You can't go north"); Game{ player_location: location } },
+        None => { println!("You can't go west."); Game{ player_location: location } },
     }
 }
 
