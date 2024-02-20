@@ -1,10 +1,12 @@
 use crate::room::{test_dungeon::test_dungeon, Exits};
+use crate::room::*;
 use crate::game_data::Game;
 
 pub fn match_action(guess: &str, data: &mut Game) -> Result<Game, ()> {
-    let guess = guess.trim();
-
-    match guess {
+    let first_word = guess.trim().split_whitespace().next().unwrap_or("");
+    let second_word = guess.trim().split_whitespace().nth(1).unwrap_or("");
+    
+    match first_word {
         "look" => Err(look(data.player_location)),
         "l" => Err(look(data.player_location)),
         "north" => Ok(north(data.player_location)),
@@ -15,6 +17,7 @@ pub fn match_action(guess: &str, data: &mut Game) -> Result<Game, ()> {
         "e" => Ok(east(data.player_location)),
         "west" => Ok(west(data.player_location)),
         "w" => Ok(west(data.player_location)),
+        "read" => Err(read(second_word, data.player_location)),
         "quit" => Err(quit()),
         "q" => Err(quit()),
         _ => Err(unknown()),
@@ -88,11 +91,40 @@ pub fn west(mut location: &'static str) -> Game {
     }
 }
 
+pub fn read (to_read: &str, location: &str) -> () {
+    let room = test_dungeon(location);
+
+    for i in room.items {
+        match i {
+            Items::Sign(_vec, desc) => {
+                if to_read == "sign" {
+                    println!("{}", desc);
+                }
+                else {
+                    println!("You can't read that.");
+                }
+            },
+            _ => {},
+        }
+    }
+}
+
 pub fn quit() -> () {
     println!("Bye bye!");
     std::process::exit(0);
 }
 
 pub fn unknown() -> () {
-    println!("You can't do that");
+    println!("You can't do that.");
+}
+
+pub fn match_item(item: &str) -> Items {
+    match item {
+        "sign" => Items::Sign(vec![], ""),
+        "key" => Items::Key,
+        "door" => Items::Door,
+        "potion" => Items::Potion,
+        "dagger" => Items::Dagger,
+        _ => Items::None,
+    }
 }

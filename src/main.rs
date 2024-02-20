@@ -22,7 +22,7 @@ fn main() {
     
     loop {
         if has_seen_description == false {
-            match_action("look", &mut game);
+            let _ = match_action("look", &mut game);
             has_seen_description = true;
         }
 
