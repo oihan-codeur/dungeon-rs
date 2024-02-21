@@ -1,4 +1,4 @@
-pub mod test_dungeon;
+pub mod tuto_dungeon;
 use std::collections::HashMap;
 
 #[derive(Clone, Debug)]

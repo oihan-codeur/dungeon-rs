@@ -16,6 +16,15 @@ pub fn test_dungeon(id: &str) -> Room {
         items: vec![Items::Sign(vec!["sign"], "This is the second sign.")],
     };
     room2.exits.insert(Exits::South, "room1");
+    room2.exits.insert(Exits::North, "room3");
+
+    let mut room3 = Room {
+        description: "This is room number 3",
+        exits: HashMap::new(),
+        items: vec![Items::Sign(vec!["sign"], "This is the third sign.")],
+    };
+    room3.exits.insert(Exits::South, "room2");
+
 
     let mut dungeon = HashMap::new();
     dungeon.insert("room1", room1);

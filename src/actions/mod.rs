@@ -1,4 +1,4 @@
-use crate::room::{test_dungeon::test_dungeon, Exits};
+use crate::room::{tuto_dungeon::test_dungeon, Exits};
 use crate::room::*;
 use crate::game_data::Game;
 
@@ -29,6 +29,7 @@ pub fn look(location: &str) -> () {
     let current_room = test_dungeon(location);
 
     println!("{}", current_room.description);
+    println!("Exits: {:?}", current_room.exits.keys());
 }
 
 pub fn north(mut location: &'static str) -> Game {
@@ -79,6 +80,7 @@ pub fn east(mut location: &'static str) -> Game {
 pub fn west(mut location: &'static str) -> Game {
     let current_room = test_dungeon(location);
 
+    
     match current_room.exits.get(&Exits::West) {
         Some(room) => {
             location = room;
