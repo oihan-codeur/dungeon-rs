@@ -9,9 +9,7 @@ pub mod room;
 pub mod game_data;
 use game_data::Game;
 
-
 fn main() {
-    
     let mut game = Game {
         player_location: "room1",
     };
@@ -19,7 +17,7 @@ fn main() {
     println!("My dungeon crawler");
 
     let mut has_seen_description = false;
-    
+
     loop {
         if has_seen_description == false {
             let _ = match_action("look", &mut game);
@@ -27,7 +25,6 @@ fn main() {
         }
 
         let mut input = String::new();
-        println!("What do you want to do?");
 
         io::stdin()
             .read_line(&mut input)
@@ -37,9 +34,8 @@ fn main() {
         match result {
             Ok(new_data) => {
                 game = new_data;
-            },
-            Err(()) => {},
+            }
+            Err(()) => {}
         }
     }
-
 }

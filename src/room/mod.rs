@@ -1,8 +1,7 @@
-pub mod tuto_dungeon;
+pub mod academy;
 use std::collections::HashMap;
 
-#[derive(Clone, Debug)]
-#[derive(Eq, Hash, PartialEq)]
+#[derive(Clone, Debug, Eq, Hash, PartialEq)]
 pub enum Exits {
     North,
     South,
@@ -12,8 +11,7 @@ pub enum Exits {
     Down,
 }
 
-#[derive(Clone, Debug)]
-#[derive(Eq, Hash, PartialEq)]
+#[derive(Clone, Debug, Eq, Hash, PartialEq)]
 pub enum Items {
     Sign(Vec<&'static str>, &'static str),
     Key,
